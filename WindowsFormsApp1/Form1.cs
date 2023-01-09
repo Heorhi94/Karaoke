@@ -6,6 +6,7 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Media;
+using System.Runtime.Remoting.Metadata.W3cXsd2001;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
@@ -19,6 +20,8 @@ namespace WindowsFormsApp1
         int[] time;
         string textSong;
         string pathSong;
+        int x;
+        bool y=false;
         WMPLib.WindowsMediaPlayer WMP = new WMPLib.WindowsMediaPlayer();
 
         public Karaoke()
@@ -41,61 +44,21 @@ namespace WindowsFormsApp1
             songTime.Enabled = false;
         }
 
-        private void bPathText_Click(object sender, EventArgs e)
-        {
-            textMusic.Clear();
-            OpenFileDialog open = new OpenFileDialog();
-            if(open.ShowDialog() == DialogResult.OK)
-            {
-                pathText = open.FileName;
-                textMusic.AppendText(ReadText()+"\n");
-            }
-        }
-
-        private void comboBox_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if(comboBox.SelectedIndex == 0)
-            {
-                textMusic.Clear();
-                pathText = @"D:\StudiesProject\C#\Lab10Karaoke\WindowsFormsApp1\text\Dzisiaj w Betleem.txt";
-                WMP.URL = @"D:\StudiesProject\C#\Lab10Karaoke\WindowsFormsApp1\misic\koleda-dzisiaj-w-betlejem-karaoke.mp3";
-                Play();
-               
-            }
-            if(comboBox.SelectedIndex == 1)
-            {
-                textMusic.Clear();
-                pathText = @"D:\StudiesProject\C#\Lab10Karaoke\WindowsFormsApp1\text\Cicha noc.txt";
-                WMP.URL = @"D:\StudiesProject\C#\Lab10Karaoke\WindowsFormsApp1\misic\koleda-cicha-noc-karaoke.mp3";
-                Play();
-             
-            }
-            if(comboBox.SelectedIndex == 2)
-            {
-                textMusic.Clear();
-                pathText = @"D:\StudiesProject\C#\Lab10Karaoke\WindowsFormsApp1\text\Przybieżeli do Betlejem.txt";
-                WMP.URL = @"D:\StudiesProject\C#\Lab10Karaoke\WindowsFormsApp1\misic\koleda-przybiezeli-do-betlejem-karaoke.mp3";
-                Play();
-               
-            }
-        }
-
-        private void bPathMusic_Click(object sender, EventArgs e)
-        {
-            OpenFileDialog open = new OpenFileDialog();
-            if(open.ShowDialog() == DialogResult.OK)
-            {
-                pathSong = open.FileName;
-            }
-
-        }
+      
 
         public string ReadTextAndTime()
         {
+            
             using (StreamReader read = new StreamReader(pathText, true))
             {
+
                 return read.ReadToEnd();
+                    
             }
+          
+            MessageBox.Show("Please Change file");
+            
+           
         }
 
         public string ReadText()
@@ -146,7 +109,9 @@ namespace WindowsFormsApp1
             time = TimeLine();
             TextLine(currentLine);
             songTime.Interval = time[currentLine] * 1000;
-            songTime.Start();    
+            songTime.Start();
+            timerProgress.Start();
+            y = true;
         }
 
         private void songTime_Tick(object sender, EventArgs e)
@@ -158,12 +123,72 @@ namespace WindowsFormsApp1
                 currentLine++;
                 TextLine(currentLine);
                 songTime.Interval = time[currentLine] * 1000;
-                songTime.Start();               
+                songTime.Start(); 
             }
             else
             {
                 WMP.controls.stop();
             }
+        }
+
+        private void selectSongToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog open = new OpenFileDialog();
+            if (open.ShowDialog() == DialogResult.OK)
+            {
+                pathSong = open.FileName;
+            }
+        }
+
+        private void selectTextToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            textMusic.Clear();
+            OpenFileDialog open = new OpenFileDialog();
+            if (open.ShowDialog() == DialogResult.OK)
+            {
+                pathText = open.FileName;
+                textMusic.AppendText(ReadText() + "\n");
+            }
+        }
+
+        private void dzisiajToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+            textMusic.Clear();
+            pathText = @"D:\StudiesProject\C#\Lab10Karaoke\WindowsFormsApp1\text\Dzisiaj w Betleem.txt";
+            WMP.URL = @"D:\StudiesProject\C#\Lab10Karaoke\WindowsFormsApp1\misic\koleda-dzisiaj-w-betlejem-karaoke.mp3";
+            Play();
+            nameSong.Text = "Dzisiaj w Betleem";
+        }
+
+        private void cichaNocToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            textMusic.Clear();
+            pathText = @"D:\StudiesProject\C#\Lab10Karaoke\WindowsFormsApp1\text\Cicha noc.txt";
+            WMP.URL = @"D:\StudiesProject\C#\Lab10Karaoke\WindowsFormsApp1\misic\koleda-cicha-noc-karaoke.mp3";
+            Play();
+            nameSong.Text = "Cicha noc";
+        }
+
+        private void przybieżeliDoBetlejemToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            textMusic.Clear();
+            pathText = @"D:\StudiesProject\C#\Lab10Karaoke\WindowsFormsApp1\text\Przybieżeli do Betlejem.txt";
+            WMP.URL = @"D:\StudiesProject\C#\Lab10Karaoke\WindowsFormsApp1\misic\koleda-przybiezeli-do-betlejem-karaoke.mp3";
+            Play();
+            nameSong.Text = "Przybieżeli do Betlejem";
+        }
+
+        private void timerProgress_Tick(object sender, EventArgs e)
+        {
+            timerProgress.Stop();                   
+            if (y == true)
+            {
+                x = (int)WMP.currentMedia.duration;
+                progressBar1.Maximum = x;
+                progressBar1.Value = (int)(WMP.controls.currentPosition / x * 100);
+                timerProgress.Start();
+            }                   
         }
     }
 }

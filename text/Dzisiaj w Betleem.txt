@@ -1,4 +1,4 @@
-[11]
+[10]
 [06] Dzisiaj w Betlejem, dzisiaj w Betlejem wesoła nowina,
 [05] że Panna czysta, że Panna czysta porodziła Syna.
 [03]Chrystus się rodzi, nas oswobodzi,
@@ -9,7 +9,7 @@
 [03]Anieli grają, króle witają,
 [03]pasterze śpiewają, bydlęta klękają,
 [05]cuda, cuda ogłaszają. 
-[03]Maryja Panna, Maryja Panna
+[04]Maryja Panna, Maryja Panna
 [02]Dzieciątko piastuje,
 [03]i Józef stary, i Józef stary
 [02]Ono pielęgnuje. 

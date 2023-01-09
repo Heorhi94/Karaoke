@@ -164,7 +164,7 @@
   <data name="bStop.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAL
-        DQAACw0B7QfALAAAA5ZJREFUeF7tmktrXWUYRvMzvGArmpycBIP3G5WKxWJjElupWCzea9NcBkIDiSKi
+        DAAACwwBP0AiyAAAA5ZJREFUeF7tmktrXWUYRvMzvGArmpycBIP3G5WKxWJjElupWCzea9NcBkIDiSKi
         qFVR6KCgoIiCQkFpYmNSm4u52qM4EBwUKphR4x/QOOlo+b3lGQkv38fp7sfZshcskmefwbtoM9kkbRUV
         FRUVFRUVMW4cYe+2UVa3j/DP9lFoSUPbthFWbhhmQNnFcPMw7wcpkzcNc0z5V0btCHtrQ9AxxKXw/Xjn
         KNfpo5bD2mrDTFxuDc3tQ/Tro+bpHmQ1SHBCj1oea7XmrkGW9ah5el5iq+cw1Ae5Vo9anu4RrrHm4N96
@@ -184,5 +184,11 @@
   </data>
   <metadata name="songTime.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
+  </metadata>
+  <metadata name="menu.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>139, 24</value>
+  </metadata>
+  <metadata name="timerProgress.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>234, 24</value>
   </metadata>
 </root>
